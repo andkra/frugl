@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+    nginx:
+        build:
+            context: ./docker/nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./web:/var/web
+
+    fpm:
+        build:
+            context: ./docker/php
+        volumes:
+            - ./web:/var/web
+        expose:
+            - "9000"
+        environment:
+            - "DB_HOST=db"
+
+    db:
+        build:
+            context: ./docker/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=rootpass
