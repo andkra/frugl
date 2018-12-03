@@ -7,13 +7,13 @@ services:
         ports:
             - "8080:80"
         volumes:
-            - ./web:/var/web
+            - .:/var/www/html
 
     fpm:
         build:
             context: ./docker/php
         volumes:
-            - ./web:/var/web
+            - .:/var/www/html
         expose:
             - "9000"
         environment:
@@ -24,3 +24,8 @@ services:
             context: ./docker/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=rootpass
+
+    composer:
+        image: composer:latest
+        volumes:
+          - .:/app
