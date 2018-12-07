@@ -1,6 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-Würde app/ löschen
 
 ###> symfony/framework-bundle ###
 /.env.local
